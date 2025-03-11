@@ -16,8 +16,8 @@
 // }
 
 int main(int argc, char *argv[]) {
-    // string filename = (argc, argv, "src/small.txt");
-    string filename = (argc, argv, "src/medium.txt");
+    string filename = (argc, argv, "src/small.txt");
+    // string filename = (argc, argv, "src/medium.txt");
     // string filename = (argc, argv, "src/large.txt");
     // string filename = (argc, argv, "src/largest.txt");
     Graph G;

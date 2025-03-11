@@ -12,17 +12,17 @@ vector<int> dijkstra_shortest_path(const Graph& G, int source, vector<int>& prev
     while (!pq.empty()) {
         int u = pq.top().second;
         pq.pop();
-        // if (visited[u]) continue;
+        if (visited[u]) continue;
         visited[u] = true;
         for (const Edge& edge : G[u]) {
             int v = edge.dst;
             int weight = edge.weight;
             
-            // if (!visited[v] && distance[u] + weight < distance[v]) {
+            if (!visited[v] && distance[u] + weight < distance[v]) {
                 distance[v] = distance[u] + weight;
                 previous[v] = u;
                 pq.push({distance[v], v});
-            // }
+            }
         }
     }
     return distance;
