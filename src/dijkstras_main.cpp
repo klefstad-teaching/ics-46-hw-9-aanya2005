@@ -1,4 +1,5 @@
 #include "dijkstras.h"
+// g++ -o dijkstra src/dijkstras_main.cpp src/dijkstras.cpp -std=c++20
 
 // struct Node {
 //     int vertex, weight;
@@ -74,9 +75,18 @@ int main(int argc, char *argv[]) {
     int source = 0, destination = G.numVertices - 1;  // Example: 0 to last vertex
     vector<int> previous;
     vector<int> distances = dijkstra_shortest_path(G, source, previous);
+    
     vector<int> path = extract_shortest_path(distances, previous, destination);
-    cout << "Shortest path from " << source << " to " << destination << ": ";
-    print_path(path, distances[destination]);
-
+    
+    // Print the total cost
+    cout << "Total cost is " << distances[destination] << endl;
+    
+    // Print the path
+    for (size_t i = 0; i < path.size(); i++) {
+        cout << path[i];
+        if (i != path.size() - 1) cout << " ";
+    }
+    cout << endl;
+    
     return 0;
 }
