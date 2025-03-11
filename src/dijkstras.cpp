@@ -12,13 +12,17 @@ vector<int> dijkstra_shortest_path(const Graph& G, int source, vector<int>& prev
     while (!pq.empty()) {
         int u = pq.top().second;
         pq.pop();
+        
+        // Instead of skipping if visited, check if the current distance is outdated
         if (visited[u]) continue;
+        
         visited[u] = true;
+
         for (const Edge& edge : G[u]) {
             int v = edge.dst;
             int weight = edge.weight;
             
-            if (!visited[v] && distance[u] + weight < distance[v]) {
+            if (distance[u] + weight < distance[v]) {  // If a shorter path is found
                 distance[v] = distance[u] + weight;
                 previous[v] = u;
                 pq.push({distance[v], v});
@@ -45,7 +49,7 @@ vector<int> extract_shortest_path(const vector<int>& distances, const vector<int
 }
 
 void print_path(const vector<int>& path, int total) {
-    //should print only the end?
+    //should print only the last?
     if (path.empty()) {
         cout << "\nTotal cost is " << total << endl;
         return;
